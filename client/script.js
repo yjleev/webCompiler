@@ -24,15 +24,15 @@ const signUp = () => {
     const linkBox = document.querySelector('#signup_page>form>div');
 
     openBtn.addEventListener('click', () => {
-        togglePage("signup", "open");
+        togglePage("signup_page", "open");
     });
 
     linkBox.addEventListener('click', (event) => {
         if (event.target === linkBox.querySelector('a:first-child')) {
-            togglePage("signup", "close");
+            togglePage("signup_page", "close");
         } else if (event.target === linkBox.querySelector('a:last-child')) {
-            togglePage("signup", "close");
-            togglePage("login", "open")
+            togglePage("signup_page", "close");
+            togglePage("login_page", "open")
         }
     }); 
 
@@ -76,7 +76,7 @@ const signUp = () => {
             const result = await response.json();
 
             if (response.ok) {
-                togglePage("signup", "close");
+                togglePage("signup_page", "close");
                 signIn(username);
             } else {
                 alert(result.message);
@@ -93,15 +93,15 @@ const login = () => {
     const linkBox = document.querySelector('#login_page>form>div');
 
     openBtn.addEventListener('click', () => {
-        togglePage("login", "open");
+        togglePage("login_page", "open");
     });
 
     linkBox.addEventListener('click', (event) => {
         if (event.target === linkBox.querySelector('a:first-child')) {
-            togglePage("login", "close");
+            togglePage("login_page", "close");
         } else if (event.target === linkBox.querySelector('a:last-child')) {
-            togglePage("login", "close");
-            togglePage("signup", "open");
+            togglePage("login_page", "close");
+            togglePage("signup_page", "open");
         }
     });
 
@@ -125,7 +125,7 @@ const login = () => {
             const result = await response.json();
 
             if (response.ok) {
-                togglePage("login", "close");
+                togglePage("login_page", "close");
                 signIn(username);
             } else {
                 alert(result.message);
@@ -138,6 +138,7 @@ const login = () => {
 login();
 
 const createProblem = () => {
+    
     const textarea = document.querySelectorAll('#create_problem textarea');
 
     textarea.forEach((input) => {
@@ -148,6 +149,41 @@ const createProblem = () => {
         });
     });
 
-    
+    const page = document.getElementById('create_problem');
+
+    page.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const title = page.querySelector('.title>textarea');
+        const description = page.querySelector('.description>textarea');
+        const example = page.querySelector('.example>textarea');
+        const testcase = page.querySelector('.testcase>textarea');
+
+        const data = {
+            title,
+            description,
+            example,
+            testcase
+        }
+
+        try {
+            const response = await fetch("/create_problem", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                togglePage("create_problem", "close");
+                signIn(username);
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert("서버 오류 발생");
+        }
+    });
 };
 createProblem();

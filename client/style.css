@@ -277,6 +277,7 @@ footer {
 /* create_problem */
 
 #create_problem {
+    display: none;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -353,7 +354,6 @@ footer {
     width: 100%;
     min-height: 145px;
 }
-
 
 #create_problem > form > button {
     all: unset;
