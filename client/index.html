@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트스페이스</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <div>
+            <a href="./index.html">
+                <h3>S</h3><span>mart</span>
+                <h3>S</h3><span>pace</span>
+            </a>
+            <nav>
+                <a href="#">문제</a>
+                <a href="#">시험</a>
+                <a href="#">정보</a>
+            </nav>
+            <div id="box_user">
+                <a href="#">로그인</a>
+                <div></div>
+                <a href="#">회원가입</a>
+            </div>
+        </div>
+    </header>
+    <!-- main -->
+    <main>
+        <div class="container">
+            <ul class="box title">
+                <li>번호</li>
+                <li>제목</li>
+                <li>완료</li>
+            </ul>
+            <div id="box_problems"></div>
+        </div>
+    </main>
+    <!-- sign_up -->
+    <div id="signup_page" class="sign">
+        <form action="/signup">
+            <h1>
+                <span>S</span>mart
+                <span>S</span>pace
+            </h1>
+            <h2>회원가입</h2>
+            <input type="text" placeholder="이름(한글 2~4자)">
+            <input type="password" placeholder="비밀번호(6자 이상)">
+            <input type="password" placeholder="비밀번호 확인">
+            <div>
+                <a href="#">메인화면</a>
+                <div></div>
+                <a href="#">로그인</a>
+            </div>
+            <button type="submit">회원가입</button>
+        </form>
+    </div>
+    <!-- login -->
+    <div id="login_page" class="sign">
+        <form action="/signup">
+            <h1>
+                <span>S</span>mart
+                <span>S</span>pace
+            </h1>
+            <h2>로그인</h2>
+            <input type="text" placeholder="이름">
+            <input type="password" placeholder="비밀번호">
+            <div>
+                <a href="#">메인화면</a>
+                <div></div>
+                <a href="#">회원가입</a>
+            </div>
+            <button type="submit">로그인</button>
+        </form>
+    </div>
+    
+    <footer></footer>
+    <script src="./script.js"></script>
+</body>
+</html>
