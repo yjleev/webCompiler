@@ -12,6 +12,13 @@ const toggleSign = (type, action) => {
     };
 };
 
+const signIn = (name) => {
+    const box = document.getElementById('box_user');
+
+    box.textContent = `${name}`;
+    box.classList.add('user');
+};
+
 const signUp = () => {
     const openBtn = document.querySelector('#box_user>a:last-child');
     const linkBox = document.querySelector('#signup_page>form>div');
@@ -70,6 +77,7 @@ const signUp = () => {
 
             if (response.ok) {
                 toggleSign("signup", "close");
+                signIn(username);
             } else {
                 alert(result.message);
             }
@@ -118,6 +126,7 @@ const login = () => {
 
             if (response.ok) {
                 toggleSign("login", "close");
+                signIn(username);
             } else {
                 alert(result.message);
             }
