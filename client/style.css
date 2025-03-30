@@ -19,6 +19,15 @@ li {
     list-style: none;
 }
 
+input {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+}
+
 @font-face {
     font-family: 'logo';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulScript-Bold.woff2') format('woff2');
@@ -215,7 +224,6 @@ footer {
 }
 
 .sign > form > input {
-    outline: none;
     width: 80%;
     height: 50px;
     border-radius: 10px;
@@ -264,4 +272,100 @@ footer {
     width: 500px;
     height: 425px;
     margin: 250px auto;
+}
+
+/* create_problem */
+
+#create_problem {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f8fbff;
+    top: 0;
+    overflow: auto;
+}
+
+#create_problem > img {
+    position: absolute;
+    width: 60px;
+    cursor: pointer;
+    top: 50px;
+    left: 50px;
+}
+
+#create_problem > form {
+    position: relative;
+    width: 1100px;
+    min-height: 800px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 15px;
+    margin: 50px auto;
+    padding: 20px 30px;
+}
+
+#create_problem > form {
+    position: relative;
+    width: 1100px;
+    min-height: 800px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 15px;
+    margin: 50px auto;
+    padding: 10px 30px;
+}
+
+#create_problem > form textarea {
+    font-family: Arial, sans-serif;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    overflow: hidden;
+}
+
+#create_problem > form > div {
+    margin: 20px 0;
+}
+
+#create_problem > form > div > h2 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+#create_problem > form > div > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#create_problem > form > div > div > textarea {
+    width: 49%;
+    min-height: 70px;
+}
+
+#create_problem > form > .title > textarea {
+    width: 100%;
+    height: 45px;
+}
+
+#create_problem > form > .explain > textarea {
+    width: 100%;
+    min-height: 145px;
+}
+
+
+#create_problem > form > button {
+    all: unset;
+    position: absolute;
+    bottom: 0;
+    right: -225px;
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    background-color: #2957ff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
 }

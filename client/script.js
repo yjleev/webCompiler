@@ -1,5 +1,5 @@
-const toggleSign = (type, action) => {
-    const page = document.getElementById(`${type}_page`);
+const togglePage = (type, action) => {
+    const page = document.getElementById(`${type}`);
     const body = document.querySelector("body");
     if (action === "open") {
         page.style.display = "block";
@@ -24,15 +24,15 @@ const signUp = () => {
     const linkBox = document.querySelector('#signup_page>form>div');
 
     openBtn.addEventListener('click', () => {
-        toggleSign("signup", "open");
+        togglePage("signup", "open");
     });
 
     linkBox.addEventListener('click', (event) => {
         if (event.target === linkBox.querySelector('a:first-child')) {
-            toggleSign("signup", "close");
+            togglePage("signup", "close");
         } else if (event.target === linkBox.querySelector('a:last-child')) {
-            toggleSign("signup", "close");
-            toggleSign("login", "open")
+            togglePage("signup", "close");
+            togglePage("login", "open")
         }
     }); 
 
@@ -76,7 +76,7 @@ const signUp = () => {
             const result = await response.json();
 
             if (response.ok) {
-                toggleSign("signup", "close");
+                togglePage("signup", "close");
                 signIn(username);
             } else {
                 alert(result.message);
@@ -93,15 +93,15 @@ const login = () => {
     const linkBox = document.querySelector('#login_page>form>div');
 
     openBtn.addEventListener('click', () => {
-        toggleSign("login", "open");
+        togglePage("login", "open");
     });
 
     linkBox.addEventListener('click', (event) => {
         if (event.target === linkBox.querySelector('a:first-child')) {
-            toggleSign("login", "close");
+            togglePage("login", "close");
         } else if (event.target === linkBox.querySelector('a:last-child')) {
-            toggleSign("login", "close");
-            toggleSign("signup", "open");
+            togglePage("login", "close");
+            togglePage("signup", "open");
         }
     });
 
@@ -125,7 +125,7 @@ const login = () => {
             const result = await response.json();
 
             if (response.ok) {
-                toggleSign("login", "close");
+                togglePage("login", "close");
                 signIn(username);
             } else {
                 alert(result.message);
@@ -136,3 +136,18 @@ const login = () => {
     });
 };
 login();
+
+const createProblem = () => {
+    const textarea = document.querySelectorAll('#create_problem textarea');
+
+    textarea.forEach((input) => {
+        input.addEventListener('input', () => {
+            if (input.scrollHeight > input.offsetHeight) {
+                input.style.height = input.scrollHeight + 'px';
+            }
+        });
+    });
+
+    
+};
+createProblem();

@@ -78,7 +78,32 @@
     </div>
     <!-- create_problem -->
     <div id="create_problem">
-        
+        <img src="./img/arrow.png" alt="arrow.png">
+        <form action="/create_problem">
+            <div class="title">
+                <h2>제목</h2>
+                <textarea></textarea>
+            </div>
+            <div class="explain">
+                <h2>설명</h2>
+                <textarea></textarea>
+            </div>
+            <div class="example">
+                <h2>예시 입력 및 출력 1</h2>
+                <div>
+                    <textarea class="input"></textarea>
+                    <textarea class="output"></textarea>
+                </div>
+            </div>
+            <div class="testcase">
+                <h2>테스트케이스 입력 및 출력 1</h2>
+                <div>
+                    <textarea class="input"></textarea>
+                    <textarea class="output"></textarea>
+                </div>
+            </div>
+            <button type="submit">생성</button>
+        </form>
     </div>
     <script src="./script.js"></script>
 </body>
