@@ -137,6 +137,11 @@ const login = () => {
 };
 login();
 
+const createProblemBox = () => {
+    const box = document.querySelector('box');
+    
+};
+
 const createProblem = () => {
     
     const textarea = document.querySelectorAll('#create_problem textarea');
@@ -156,8 +161,8 @@ const createProblem = () => {
 
         const title = page.querySelector('.title>textarea');
         const description = page.querySelector('.description>textarea');
-        const example = page.querySelector('.example>textarea');
-        const testcase = page.querySelector('.testcase>textarea');
+        const example = page.querySelectorAll('.example>textarea');
+        const testcase = page.querySelectorAll('.testcase>textarea');
 
         const data = {
             title,
@@ -177,7 +182,6 @@ const createProblem = () => {
 
             if (response.ok) {
                 togglePage("create_problem", "close");
-                signIn(username);
             } else {
                 alert(result.message);
             }
