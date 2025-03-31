@@ -126,6 +126,7 @@ main {
 }
 
 main > .container {  /* container */
+    position: relative;
     width: 1000px;
     min-height: 600px;
     background-color: #fff;
@@ -164,7 +165,7 @@ main > .container .box > li:last-child {
     border: 0px;
 }
 
-main > .container > .title > li {  /* title-font */
+main > .container > .box > li {  /* title-font */
     font-size: 17px;
     font-weight: bold;
 }
@@ -175,6 +176,15 @@ main > .container > #box_problems > .box {  /* problem-box */
 
 main > .container > #box_problems > .box:nth-child(odd) {
     background-color: #f8fafe;
+}
+
+#btn_create_problem {
+    position: absolute;
+    width: 80px;
+    top: 0;
+    right: -100px;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 
