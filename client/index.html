@@ -34,13 +34,7 @@
                 <li>제목</li>
                 <li>완료</li>
             </ul>
-            <div id="box_problems">
-                <ul class="box">
-                    <li>1</li>
-                    <li>A+B</li>
-                    <li>-</li>
-                </ul>
-            </div>
+            <div id="box_problems"></div>
         </div>
         <img src="./img/plus.png" alt="plus.png" id="btn_create_problem">
     </main>
@@ -121,9 +115,21 @@
                 <div class="tab">제출</div>
             </div>
             <div class="problem content">
+                <h1>A+B</h1>
+                <p></p>
+                <div class="example">
+                    <div class="input"></div>
+                    <div class="output"></div>
+                </div>
             </div>
             <form action="/code" class="content active">
                 <h3>A+B</h3>
+                <div>
+                    <textarea class="line" disabled></textarea>
+                    </textarea>
+                    <textarea id="code"></textarea>
+                </div>
+                <button type="submit">제출</button>
             </form>
         </div>
     </div>

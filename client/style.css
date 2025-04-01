@@ -26,6 +26,11 @@ input {
 textarea {
     resize: none;
     outline: none;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    all: unset;
 }
 
 @font-face {
@@ -326,7 +331,6 @@ footer {
 }
 
 #create_problem > form textarea {
-    font-family: Arial, sans-serif;
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 18px;
@@ -359,13 +363,12 @@ footer {
     height: 45px;
 }
 
-#create_problem > form > .explain > textarea {
+#create_problem > form > .description > textarea {
     width: 100%;
     min-height: 145px;
 }
 
 #create_problem > form > button {
-    all: unset;
     position: absolute;
     bottom: 0;
     right: -225px;
@@ -388,7 +391,7 @@ footer {
     width: 100vw;
     height: 100vh;
     background-color: #f8fbff;
-    /* display: none; */
+    display: none;
 }
 
 #problem_page > img {
@@ -429,21 +432,62 @@ footer {
 #problem_page > .container > .content {
     flex-grow: 1;
     overflow: auto;
-    /* display: none; */
-}
-
-#problem_page > .container > .problem {
     display: none;
 }
 
 #problem_page > .container > form {
+    position: relative;
     padding: 20px 30px;
+    padding-bottom: 50px;
+    overflow: scroll;
+    display: none;
 }
 
 #problem_page > .container > form > h3 {
     display: block;
     padding-bottom: 10px;
     border-bottom: 1px solid #333;
+}
+
+#problem_page > .container > form > div  {
+    display: flex;
+    background-color: #eee;
+}
+
+#problem_page > .container > form > div > ul {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+#problem_page > .container > form > div > .line {
+    width: 30px;
+    border: 0;
+    background-color: inherit;
+    padding-top: 10px 15px;
+}
+
+#problem_page > .container > form > div > #code {
+    border: 0;
+    flex-grow: 1;
+    height: 500px;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+#problem_page > .container > form > button {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-color: #2957ff;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 20px;
 }
 
 #problem_page > .container > .tab_menu > .on {

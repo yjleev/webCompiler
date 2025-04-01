@@ -137,9 +137,16 @@ const login = () => {
 };
 login();
 
-const createProblemBox = () => {
-    const box = document.querySelector('box');
-    
+const createProblemBox = (title) => {
+    const container = document.getElementById("box_problems");
+    const box = document.querySelector('.container>.box').cloneNode(true);
+    container.appendChild(box);
+    const problems = document.querySelectorAll('#box_problems>.box');
+    box.classList.add(`${problems.length}`);
+
+    box.querySelector('li:first-child').textContent = `${problems.length}`;
+    box.querySelector('li:nth-child(2)').textContent = `${title}`;
+    box.querySelector('li:last-child').textContent = `-`;
 };
 
 const createProblem = () => {
@@ -168,30 +175,41 @@ const createProblem = () => {
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        const title = form.querySelector('.title>textarea');
-        const description = form.querySelector('.description>textarea');
-        const example = form.querySelectorAll('.example>textarea');
-        const testcase = form.querySelectorAll('.testcase>textarea');
-
+    
+        // .value로 각 textarea 값 가져오기
+        const title = form.querySelector('.title>textarea').value;
+        const description = form.querySelector('.description>textarea').value;
+    
+        // 예제와 테스트 케이스의 값을 가져와서 , 로 합침
+        let example = form.querySelectorAll('.example textarea');
+        let testcase = form.querySelectorAll('.testcase textarea');
+    
+        // 각 textarea의 값들을 , 로 합침
+        example = Array.from(example).map(textarea => textarea.value).join(',');
+        testcase = Array.from(testcase).map(textarea => textarea.value).join(',');
+    
+        // 데이터 객체 구성
         const data = {
             title,
             description,
             example,
             testcase
-        }
-
+        };
+    
         try {
+            // 서버로 POST 요청 보내기
             const response = await fetch("/create_problem", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
-
+    
+            // 서버 응답 처리
             const result = await response.json();
-
+    
             if (response.ok) {
                 togglePage("create_problem", "close");
+                createProblemBox(`${result.title}`);
             } else {
                 alert(result.message);
             }
@@ -208,39 +226,119 @@ const problem = () => {
     const tab = document.querySelectorAll('.tab_menu>.tab');
     const content = document.querySelectorAll('.container>.content');
 
-    problemBox.forEach((box, index) => {
-        box.addEventListener('click', () => {
+    for (const [index, box] of problemBox.entries()) {
+        box.addEventListener("click", async () => {
             togglePage("problem_page", "open");
-            tab.forEach((item) => {
-                item.classList.remove("on");
-            });
+    
+            tab.forEach((item) => item.classList.remove("on"));
             tab[0].classList.add("on");
-
-            content.forEach((con) => {
-                con.classList.remove("active");
-            });
+    
+            content.forEach((con) => con.classList.remove("active"));
             content[0].classList.add("active");
+    
+            const data = { index };
+    
+            try {
+                const response = await fetch("/compile", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+    
+                const result = await response.json();
+    
+                if (response.ok) {
+                    togglePage("login_page", "close");
+                    signIn(username);
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                alert("서버 오류 발생");
+            }
         });
-    });
+    }
+    
 
     returnIcon.addEventListener('click', () => {
         togglePage("problem_page", "close");
     });
 
-    tab.forEach((box, index) => {
-        box.addEventListener('click', () => {
-            tab.forEach((item) => {
-                item.classList.remove("on");
-            });
+    // tab.forEach(async(box, index) => {
+    //     box.addEventListener('click', () => {
+    //         tab.forEach((item) => {
+    //             item.classList.remove("on");
+    //         });
 
-            content.forEach((con) => {
-                con.classList.remove("active");
-            });
+    //         content.forEach((con) => {
+    //             con.classList.remove("active");
+    //         });
 
+    //         tab[index].classList.add("on");
+    //         content[index].classList.add("active");
+
+    //         const data = { index };
+
+    //         try {
+    //             const response = await fetch("/compile", {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": "application/json" },
+    //                 body: JSON.stringify(data),
+    //             });
+    
+    //             const result = await response.json();
+    
+    //             if (response.ok) {
+    //                 togglePage("login_page", "close");
+    //                 signIn(username);
+    //             } else {
+    //                 alert(result.message);
+    //             }
+    //         } catch (error) {
+    //             alert("서버 오류 발생");
+    //         }
+    //     });
+    // });
+
+    for (const [index, box] of tab.entries()) {
+        box.addEventListener("click", async () => {
+            tab.forEach((item) => item.classList.remove("on"));
+            content.forEach((con) => con.classList.remove("active"));
+    
             tab[index].classList.add("on");
             content[index].classList.add("active");
+
         });
+    }
+
+    const form = document.querySelector('#problem_page form');
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const date = {
+
+        }
+
+        try {
+            const response = await fetch("/compile", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                togglePage("login_page", "close");
+                signIn(username);
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert("서버 오류 발생");
+        }
     });
 };
 
-problem();
+// problem();

@@ -10,6 +10,15 @@ db.serialize(() => {
     )`);
 });
 
+db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS problems (
+        title TEXT PRIMARY KEY,
+        description TEXT,
+        example TEXT,
+        testcase TEXT
+    )`);
+});
+
 function createUser(username, password, role = 'user') {
     return new Promise((resolve, reject) => {
         db.run(`INSERT INTO users (username, password, role) VALUES (?, ?, ?)`,
@@ -31,16 +40,33 @@ function getUser(username) {
     });
 };
 
-function createProblem(title, description, role = 'user') {
+function createProblem(title, description, example, testcase) {
     return new Promise((resolve, reject) => {
-        db.run(`INSERT INTO users (username, password, role) VALUES (?, ?, ?)`,
-            [title, description, role],
+        db.run(
+            `INSERT INTO problems (title, description, example, testcase) VALUES (?, ?, ?, ?)`,
+            [title, description, example, testcase],
             function (err) {
                 if (err) return reject(err);
-                resolve(this.last);
+                const problemId = this.lastID; 
+
+                resolve(problemId);
             }
         );
     });
-};
+}
 
-module.exports = { createUser, getUser };
+function getProblem(title) {
+    return new Promise((resolve, reject) => {
+        db.get(
+            `SELECT title, description, example, testcase FROM problems WHERE title = ?`, 
+            [title], 
+            (err, row) => {
+                if (err) return reject(err);
+                resolve(row);
+            }
+        );
+    });
+}
+
+
+module.exports = { createUser, getUser, createProblem, getProblem };
