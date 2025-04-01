@@ -34,9 +34,15 @@
                 <li>제목</li>
                 <li>완료</li>
             </ul>
-            <div id="box_problems"></div>
-            <img src="./img/plus.png" alt="plus.png" id="btn_create_problem">
+            <div id="box_problems">
+                <ul class="box">
+                    <li>1</li>
+                    <li>A+B</li>
+                    <li>-</li>
+                </ul>
+            </div>
         </div>
+        <img src="./img/plus.png" alt="plus.png" id="btn_create_problem">
     </main>
     <!-- footer -->
     <footer></footer>
@@ -105,6 +111,21 @@
             </div>
             <button type="submit">생성</button>
         </form>
+    </div>
+    <!-- problem_page -->
+    <div id="problem_page">
+        <img src="./img/arrow.png" alt="arrow.png">
+        <div class="container">
+            <div class="tab_menu">
+                <div class="tab on">문제</div>
+                <div class="tab">제출</div>
+            </div>
+            <div class="problem content">
+            </div>
+            <form action="/code" class="content active">
+                <h3>A+B</h3>
+            </form>
+        </div>
     </div>
     <script src="./script.js"></script>
 </body>

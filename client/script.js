@@ -36,7 +36,7 @@ const signUp = () => {
         }
     }); 
 
-    const form = document.getElementById('signup_page');
+    const form = document.querySelector('#signup_page>form');
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -105,7 +105,7 @@ const login = () => {
         }
     });
 
-    const form = document.getElementById('login_page');
+    const form = document.querySelector('#login_page>form');
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -143,7 +143,6 @@ const createProblemBox = () => {
 };
 
 const createProblem = () => {
-    
     const textarea = document.querySelectorAll('#create_problem textarea');
 
     textarea.forEach((input) => {
@@ -154,15 +153,26 @@ const createProblem = () => {
         });
     });
 
-    const page = document.getElementById('create_problem');
+    const plusIcon = document.getElementById('btn_create_problem');
+    const returnIcon = document.querySelector('#create_problem>img');
 
-    page.querySelector('form').addEventListener('submit', async (event) => {
+    plusIcon.addEventListener('click', () => {
+        togglePage("create_problem", "open");
+    });
+
+    returnIcon.addEventListener('click', () => {
+        togglePage("create_problem", "close");
+    });
+
+    const form = document.querySelector('#create_problem>form');
+
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const title = page.querySelector('.title>textarea');
-        const description = page.querySelector('.description>textarea');
-        const example = page.querySelectorAll('.example>textarea');
-        const testcase = page.querySelectorAll('.testcase>textarea');
+        const title = form.querySelector('.title>textarea');
+        const description = form.querySelector('.description>textarea');
+        const example = form.querySelectorAll('.example>textarea');
+        const testcase = form.querySelectorAll('.testcase>textarea');
 
         const data = {
             title,
@@ -191,3 +201,46 @@ const createProblem = () => {
     });
 };
 createProblem();
+
+const problem = () => {
+    const problemBox = document.querySelectorAll('#box_problems>.box');
+    const returnIcon = document.querySelector('#problem_page>img');
+    const tab = document.querySelectorAll('.tab_menu>.tab');
+    const content = document.querySelectorAll('.container>.content');
+
+    problemBox.forEach((box, index) => {
+        box.addEventListener('click', () => {
+            togglePage("problem_page", "open");
+            tab.forEach((item) => {
+                item.classList.remove("on");
+            });
+            tab[0].classList.add("on");
+
+            content.forEach((con) => {
+                con.classList.remove("active");
+            });
+            content[0].classList.add("active");
+        });
+    });
+
+    returnIcon.addEventListener('click', () => {
+        togglePage("problem_page", "close");
+    });
+
+    tab.forEach((box, index) => {
+        box.addEventListener('click', () => {
+            tab.forEach((item) => {
+                item.classList.remove("on");
+            });
+
+            content.forEach((con) => {
+                con.classList.remove("active");
+            });
+
+            tab[index].classList.add("on");
+            content[index].classList.add("active");
+        });
+    });
+};
+
+problem();

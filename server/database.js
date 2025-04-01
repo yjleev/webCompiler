@@ -10,15 +10,6 @@ db.serialize(() => {
     )`);
 });
 
-db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT,
-        role TEXT DEFAULT 'problem'
-    )`);
-});
-
 function createUser(username, password, role = 'user') {
     return new Promise((resolve, reject) => {
         db.run(`INSERT INTO users (username, password, role) VALUES (?, ?, ?)`,
