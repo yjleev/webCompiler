@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스스 문제사이트</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="center-menu">
+            <a>Code</a>
+            <a>Test</a>
+            <a>Info</a>
+        </div>
+        <a class="login-link" onclick="toggleLogin()">Login</a>
+    </nav>
+
+    <div class="login-container" id="loginContainer">
+        <h2>Login</h2>
+        <form class="login-form" id="loginForm">
+            <input type="email" placeholder="email" required>
+            <input type="password" placeholder="password" required>
+            <button type="submit">sign in</button>
+        </form>
+        <div class="loading-message" id="loadingMessage">
+            <span class="loading-icon">⌛</span>
+            <p>Waiting for admin access.<br>Please wait.</p>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>

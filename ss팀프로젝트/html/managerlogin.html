@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스스 문제사이트</title>
+    <link rel="stylesheet" href="/css/managerlogin.css">
+</head>
+<body>
+    <nav>
+        <div class="center-menu">
+            <a>Code</a>
+            <a>Test</a>
+            <a>Info</a>
+        </div>
+        <a class="login-link" onclick="toggleLogin()">관리자</a>
+    </nav>
+
+    <div class="login-container" id="loginContainer">
+        <h2>관리자 로그인</h2>
+        <form class="login-form" id="loginForm">
+            <input type="email" placeholder="관리자 이메일" required>
+            <input type="password" placeholder="비밀번호" required>
+            <button type="submit">관리자 로그인</button>
+        </form>
+        <div class="loading-message" id="loadingMessage">
+            <span class="loading-icon">⌛</span>
+            <p>관리자 접근 대기중.<br>잠시만 기다려주세요.</p>
+        </div>
+    </div>
+    <script src="/js/managerlogin.js"></script>
+</body>
+</html>
